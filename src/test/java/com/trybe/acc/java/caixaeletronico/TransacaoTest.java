@@ -31,8 +31,8 @@ class TransacaoTest {
   @Test
   @DisplayName("2 - Testa o método Getter do atributo quantia.")
   void getQuantiaTest() {
-    fail("Não implementado");
-
+    Transacao transacao = new Transacao(25.00, "Depósito inicial.");
+    assertEquals(25.00, transacao.getQuantia());
   }
 
   /**
