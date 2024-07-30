@@ -69,8 +69,13 @@ class TransacaoTest {
   @Test
   @DisplayName("4 - Testa o método instante está gerando o instante corretamente.")
   void retornarInstanteTest() {
-    fail("Não implementado");
+    String mockInstantFormat = "dd/MM/yyyy HH:mm:ss";
+    DateTimeFormatter mockInstantFormatter = DateTimeFormatter.ofPattern(mockInstantFormat);
+    LocalDateTime mockAuxInstant = LocalDateTime.now();
+    String mockedInstantReturn = mockInstantFormatter.format(mockAuxInstant);
 
+    Transacao transacaoTst = new Transacao(25.00, "Depósito de nova conta");
+    assertEquals(mockedInstantReturn, transacaoTst.retornarInstante());
   }
 
 }

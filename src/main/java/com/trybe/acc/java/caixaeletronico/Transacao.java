@@ -44,7 +44,7 @@ public class Transacao {
     }
   }
 
-  private String retornarInstante() {
+  String retornarInstante() {
 
     String formatoInstante = "dd/MM/yyyy HH:mm:ss";
     DateTimeFormatter formatadorInstante = DateTimeFormatter.ofPattern(formatoInstante);
