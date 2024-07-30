@@ -3,6 +3,9 @@ package com.trybe.acc.java.caixaeletronico;
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertNotNull;
 import static org.junit.jupiter.api.Assertions.fail;
+
+import java.time.LocalDateTime;
+import java.time.format.DateTimeFormatter;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 
@@ -41,8 +44,23 @@ class TransacaoTest {
   @Test
   @DisplayName("3 - Testa o método retornar resumo transação.")
   void retornarResumoTransacaoTest() {
-    fail("Não implementado");
+    String mockInstantFormat = "dd/MM/yyyy HH:mm:ss";
+    DateTimeFormatter mockInstantFormatter = DateTimeFormatter.ofPattern(mockInstantFormat);
+    LocalDateTime mockAuxInstant = LocalDateTime.now();
+    String mockedInstantReturn = mockInstantFormatter.format(mockAuxInstant);
+    double mockedQuantia = 25.00d;
+    String mockedDescricao = "Depósito inicial.";
 
+    Transacao transacaoTst1 = new Transacao(25.00, "Depósito inicial.");
+
+    assertEquals(
+        String.format(
+        "%s -------- %s: R$ %.02f +",
+        mockedInstantReturn,
+        mockedDescricao,
+        mockedQuantia),
+        transacaoTst1.retornarResumoTransacao()
+    );
   }
 
   /**
