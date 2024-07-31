@@ -61,8 +61,27 @@ class ContaTest {
   @Test
   @DisplayName("7 - Testa o método retornar resumo está retornando uma string com os valores corretamente.")
   void retornarResumoContaTest() {
-    fail("Não implementado");
+    assertEquals(
+        mockedAccount.getIdConta() + " : " + "R$0.00" + " : corrente",
+        mockedAccount.retornarResumoConta()
+    );
 
+    mockedAccount.adicionarTransacao(10.55, "Depósito para o teste de resumo.");
+    assertEquals(
+        mockedAccount.getIdConta() + " : " + "R$10.55" + " : corrente",
+        mockedAccount.retornarResumoConta()
+    );
+
+    mockedAccount.adicionarTransacao((-10.56), "Teste de resumo saldo negativo");
+    assertEquals(
+        String.format(
+            "%s : R$(%.02f) : %s",
+            mockedAccount.getIdConta(),
+            mockedAccount.retornarSaldo(),
+            "corrente"
+        ),
+        mockedAccount.retornarResumoConta()
+    );
   }
 
   /**
