@@ -82,16 +82,16 @@ class PessoaClienteTest {
   @DisplayName("13 - Testa o método retornar saldo de uma conta específica da pessoa cliente.")
   void retornarSaldoContaEspecificaTest() {
     mockedClient.adicionarConta(mockedAccount1);
+    mockedClient.adicionarConta(mockedAccount2);
+    mockedClient.adicionarConta(mockedAccount3);
     mockedAccount1.adicionarTransacao(
         10.00,
         "Depósito para teste de saldo específico"
     );
-    mockedClient.adicionarConta(mockedAccount2);
     mockedAccount2.adicionarTransacao(
         12.00,
         "Depósito para teste de saldo específico"
     );
-    mockedClient.adicionarConta(mockedAccount3);
     mockedAccount3.adicionarTransacao(
         100.00,
         "Depósito para teste de saldo específico"
@@ -109,8 +109,13 @@ class PessoaClienteTest {
   @Test
   @DisplayName("14 - Testa o método retornar id de uma conta específica da pessoa cliente.")
   void retornarIdContaEspecificaTest() {
-    fail("Não implementado");
+    mockedClient.adicionarConta(mockedAccount1);
+    mockedClient.adicionarConta(mockedAccount2);
+    mockedClient.adicionarConta(mockedAccount3);
 
+    assertEquals(mockedAccount1.getIdConta(), mockedClient.retornarIdContaEspecifica(0));
+    assertEquals(mockedAccount3.getIdConta(), mockedClient.retornarIdContaEspecifica(2));
+    assertEquals(mockedAccount2.getIdConta(), mockedClient.retornarIdContaEspecifica(1));
   }
 
   /**
