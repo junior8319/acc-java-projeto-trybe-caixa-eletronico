@@ -15,6 +15,29 @@ import org.junit.jupiter.api.Test;
 class PessoaClienteTest {
 
   /**
+   * The Mocked client.
+   */
+  PessoaCliente mockedClient = new PessoaCliente(
+      "Pessoa 1",
+      "012.345.678-90",
+      "senhaMuitoDificil"
+  );
+
+  /**
+   * The Mocked bank.
+   */
+  Banco mockedBank = new Banco();
+
+  /**
+   * The Mocked account.
+   */
+  Conta mockedAccount1 = new Conta("corrente", mockedClient, mockedBank);
+  /**
+   * The Mocked account 2.
+   */
+  Conta mockedAccount2 = new Conta("poupança", mockedClient, mockedBank);
+
+  /**
    * Construtor test.
    */
   @Test
@@ -40,8 +63,11 @@ class PessoaClienteTest {
   @Test
   @DisplayName("12 - Testa o método adicionar conta e o método retornar número de contas.")
   void adicionarContaTestRetornaNumeroDeContasTest() {
-    fail("Não implementado");
-
+    assertEquals(0, mockedClient.retornaNumeroDeContas());
+    mockedClient.adicionarConta(mockedAccount1);
+    assertEquals(1, mockedClient.retornaNumeroDeContas());
+    mockedClient.adicionarConta(mockedAccount2);
+    assertEquals(2, mockedClient.retornaNumeroDeContas());
   }
 
   /**
