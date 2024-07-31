@@ -24,7 +24,7 @@ public class PessoaCliente {
     this.contas = new ArrayList<Conta>();
 
     System.out.println(
-        "Nova pessoa cliente " + this.nomeCompleto + " com CPF: " + this.cpf + " criada!\n");
+        "Nova pessoa cliente " + this.nomeCompleto + " com CPF: " + this.cpf + " criada!");
   }
 
   /**
