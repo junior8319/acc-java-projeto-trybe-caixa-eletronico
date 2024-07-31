@@ -69,14 +69,17 @@ public class Conta {
   /**
    * Retorna o extrato da conta.
    */
-  public void retornarExtrato() {
+  public String retornarExtrato() {
+    String extract = "\nExtrato da conta " + this.idConta + "\n";
 
     System.out.println("\nExtrato da conta " + this.idConta + "\n");
     for (int i = this.transacoes.size() - 1; i >= 0; i--) {
       System.out.println(this.transacoes.get(i).retornarResumoTransacao());
+      extract += this.transacoes.get(i).retornarResumoTransacao() + "\n";
     }
-    System.out.println();
 
+    System.out.println();
+    return extract;
   }
 
   public String getIdConta() {

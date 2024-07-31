@@ -3,6 +3,9 @@ package com.trybe.acc.java.caixaeletronico;
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertNotNull;
 import static org.junit.jupiter.api.Assertions.fail;
+
+import java.time.LocalDateTime;
+import java.time.format.DateTimeFormatter;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 
@@ -90,8 +93,28 @@ class ContaTest {
   @Test
   @DisplayName("8 - Testa o método retornar extrato está imprimindo os valores corretamente.")
   void retornarExtratoTest() {
-    fail("Não implementado");
+    String instantFormat = "dd/MM/yyyy HH:mm:ss";
+    DateTimeFormatter instantFormatter = DateTimeFormatter.ofPattern(instantFormat);
+    LocalDateTime auxInstant = LocalDateTime.now();
 
+    String instantTransaction1 = instantFormatter.format(auxInstant);
+    mockedAccount.adicionarTransacao(25.00, "Depósito 1 para teste de extrato.");
+    String instantTransaction2 = instantFormatter.format(auxInstant);
+    mockedAccount.adicionarTransacao(15.00, "Depósito 2 para teste de extrato.");
+    String instantTransaction3 = instantFormatter.format(auxInstant);
+    mockedAccount.adicionarTransacao(-15.00, "Depósito 3 para teste de extrato.");
+
+    String mockedExtract = "\nExtrato da conta "
+        + mockedAccount.getIdConta()
+        + "\n"
+        + instantTransaction3 + " -------- "
+        + "Depósito 3 para teste de extrato." + ": " + "R$ 15.00" + " -\n"
+        + instantTransaction2 + " -------- "
+        + "Depósito 2 para teste de extrato." + ": " + "R$ 15.00" + " +\n"
+        + instantTransaction2 + " -------- "
+        + "Depósito 1 para teste de extrato." + ": " + "R$ 25.00" + " +\n";
+
+    assertEquals(mockedExtract, mockedAccount.retornarExtrato());
   }
 
   /**
