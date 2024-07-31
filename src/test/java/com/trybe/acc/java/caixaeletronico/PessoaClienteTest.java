@@ -189,8 +189,17 @@ class PessoaClienteTest {
   @Test
   @DisplayName("16 - Testa o método adiciona transação de uma conta específica da pessoa cliente.")
   void adicionarTransacaoContaEspecificaTest() {
-    fail("Não implementado");
+    mockedClient.adicionarConta(mockedAccount1);
+    mockedClient.adicionarConta(mockedAccount2);
+    mockedClient.adicionarConta(mockedAccount3);
 
+    mockedClient.adicionarTransacaoContaEspecifica(
+        0,
+        10.00,
+        "Depósito para teste de extrato específico"
+    );
+
+    assertEquals(10.00, mockedAccount1.retornarSaldo());
   }
 
   /**
