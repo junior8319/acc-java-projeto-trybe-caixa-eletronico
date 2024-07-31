@@ -111,7 +111,7 @@ class ContaTest {
         + "Depósito 3 para teste de extrato." + ": " + "R$ 15.00" + " -\n"
         + instantTransaction2 + " -------- "
         + "Depósito 2 para teste de extrato." + ": " + "R$ 15.00" + " +\n"
-        + instantTransaction2 + " -------- "
+        + instantTransaction1 + " -------- "
         + "Depósito 1 para teste de extrato." + ": " + "R$ 25.00" + " +\n";
 
     assertEquals(mockedExtract, mockedAccount.retornarExtrato());

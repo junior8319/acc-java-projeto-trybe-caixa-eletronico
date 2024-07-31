@@ -5,6 +5,8 @@ import static org.junit.jupiter.api.Assertions.fail;
 
 import java.io.ByteArrayOutputStream;
 import java.io.PrintStream;
+import java.time.LocalDateTime;
+import java.time.format.DateTimeFormatter;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 
@@ -124,8 +126,61 @@ class PessoaClienteTest {
   @Test
   @DisplayName("15 - Testa o método retornar o extrato de uma conta específica da pessoa cliente.")
   void retornarExtratoContaEspecificaTest() {
-    fail("Não implementado");
+    String instantFormat = "dd/MM/yyyy HH:mm:ss";
+    DateTimeFormatter instantFormatter = DateTimeFormatter.ofPattern(instantFormat);
+    LocalDateTime auxInstant = LocalDateTime.now();
 
+    mockedClient.adicionarConta(mockedAccount1);
+    mockedClient.adicionarConta(mockedAccount2);
+    mockedClient.adicionarConta(mockedAccount3);
+
+    String instantTransaction1 = instantFormatter.format(auxInstant);
+    mockedAccount1.adicionarTransacao(
+        10.00,
+        "Depósito para teste de extrato específico"
+    );
+
+    String instantTransaction2 = instantFormatter.format(auxInstant);
+    mockedAccount2.adicionarTransacao(
+        12.00,
+        "Depósito para teste de extrato específico"
+    );
+
+    String instantTransaction3 = instantFormatter.format(auxInstant);
+    mockedAccount3.adicionarTransacao(
+        100.00,
+        "Depósito para teste de extrato específico"
+    );
+
+    String instantTransaction4 = instantFormatter.format(auxInstant);
+    mockedAccount3.adicionarTransacao(
+        50.00,
+        "Depósito para teste de extrato específico"
+    );
+
+    String mockedExtract1 = "\nExtrato da conta "
+        + mockedAccount1.getIdConta()
+        + "\n"
+        + instantTransaction1 + " -------- "
+        + "Depósito para teste de extrato específico" + ": " + "R$ 10,00" + " +\n";
+
+    String mockedExtract2 = "\nExtrato da conta "
+        + mockedAccount2.getIdConta()
+        + "\n"
+        + instantTransaction2 + " -------- "
+        + "Depósito para teste de extrato específico" + ": " + "R$ 12,00" + " +\n";
+
+    String mockedExtract3 = "\nExtrato da conta "
+        + mockedAccount3.getIdConta()
+        + "\n"
+        + instantTransaction4 + " -------- "
+        + "Depósito para teste de extrato específico" + ": " + "R$ 50,00" + " +\n"
+        + instantTransaction3 + " -------- "
+        + "Depósito para teste de extrato específico" + ": " + "R$ 100,00" + " +\n";
+
+    assertEquals(mockedExtract1, mockedClient.retornarExtratoContaEspecifica(0));
+    assertEquals(mockedExtract2, mockedClient.retornarExtratoContaEspecifica(1));
+    assertEquals(mockedExtract3, mockedClient.retornarExtratoContaEspecifica(2));
   }
 
   /**
