@@ -123,8 +123,9 @@ class ContaTest {
   @Test
   @DisplayName("9 - Testa o método Getter do atributo idConta está retornando.")
   void getIdContaTest() {
-    fail("Não implementado");
-
+    String mockedId = mockedAccount.getIdConta();
+    assertNotNull(mockedAccount.getIdConta());
+    assertEquals(mockedAccount.getIdConta(), mockedId);
   }
 
   /**
