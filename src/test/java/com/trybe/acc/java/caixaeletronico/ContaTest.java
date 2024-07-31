@@ -134,7 +134,8 @@ class ContaTest {
   @Test
   @DisplayName("10 - Testa o método método Getter do atributo pessoaCliente está retornando.")
   void getPessoaClienteTest() {
-    fail("Não implementado");
+    assertNotNull(mockedAccount.getPessoaCliente());
+    assertEquals(mockedClient, mockedAccount.getPessoaCliente());
   }
 
 }
