@@ -1,6 +1,9 @@
 package com.trybe.acc.java.caixaeletronico;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
+import static org.junit.jupiter.api.Assertions.assertFalse;
+import static org.junit.jupiter.api.Assertions.assertNotEquals;
+import static org.junit.jupiter.api.Assertions.assertTrue;
 import static org.junit.jupiter.api.Assertions.fail;
 
 import java.io.ByteArrayOutputStream;
@@ -208,8 +211,11 @@ class PessoaClienteTest {
   @Test
   @DisplayName("17 - Testa o método validar senha.")
   void validarSenhaTest() {
-    fail("Não implementado");
+    String truePassword = "senhaMuitoDificil";
+    String falsePassword = "senhaFácil";
 
+    assertFalse(mockedClient.validarSenha(falsePassword));
+    assertTrue(mockedClient.validarSenha(truePassword));
   }
 
   /**
