@@ -38,6 +38,11 @@ class PessoaClienteTest {
   Conta mockedAccount2 = new Conta("poupança", mockedClient, mockedBank);
 
   /**
+   * The Mocked account 3.
+   */
+  Conta mockedAccount3 = new Conta("fundo investimento", mockedClient, mockedBank);
+
+  /**
    * Construtor test.
    */
   @Test
@@ -76,8 +81,25 @@ class PessoaClienteTest {
   @Test
   @DisplayName("13 - Testa o método retornar saldo de uma conta específica da pessoa cliente.")
   void retornarSaldoContaEspecificaTest() {
-    fail("Não implementado");
+    mockedClient.adicionarConta(mockedAccount1);
+    mockedAccount1.adicionarTransacao(
+        10.00,
+        "Depósito para teste de saldo específico"
+    );
+    mockedClient.adicionarConta(mockedAccount2);
+    mockedAccount2.adicionarTransacao(
+        12.00,
+        "Depósito para teste de saldo específico"
+    );
+    mockedClient.adicionarConta(mockedAccount3);
+    mockedAccount3.adicionarTransacao(
+        100.00,
+        "Depósito para teste de saldo específico"
+    );
 
+    assertEquals(100.00, mockedClient.retornarSaldoContaEspecifica(2));
+    assertEquals(10.00, mockedClient.retornarSaldoContaEspecifica(0));
+    assertEquals(12.00, mockedClient.retornarSaldoContaEspecifica(1));
   }
 
 
