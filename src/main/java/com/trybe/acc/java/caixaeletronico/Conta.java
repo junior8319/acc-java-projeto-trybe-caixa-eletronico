@@ -5,7 +5,7 @@ import java.util.Locale;
 
 /**
  * Account.
- **/
+ */
 public class Conta {
 
   private String tipoConta;
@@ -15,6 +15,10 @@ public class Conta {
 
   /**
    * Construtor para a classe Conta.
+   *
+   * @param tipoConta     the tipo conta
+   * @param pessoaCliente the pessoa cliente
+   * @param banco         the banco
    */
   public Conta(String tipoConta, PessoaCliente pessoaCliente, Banco banco) {
 
@@ -27,6 +31,9 @@ public class Conta {
 
   /**
    * Adiciona nova transação na conta.
+   *
+   * @param quantia   the quantia
+   * @param descricao the descricao
    */
   public void adicionarTransacao(double quantia, String descricao) {
 
@@ -40,6 +47,8 @@ public class Conta {
   /**
    * Retorna o saldo da conta somando as transacoes. Obs:depositos sao transacoes com valores
    * positivos e saques sao transacoes com valores negativos.
+   *
+   * @return the double
    */
   public double retornarSaldo() {
     double saldo = 0;
@@ -52,6 +61,8 @@ public class Conta {
 
   /**
    * Retorna o resumo da conta em uma linha.
+   *
+   * @return the string
    */
   public String retornarResumoConta() {
     Locale.setDefault(Locale.US);
@@ -68,6 +79,8 @@ public class Conta {
 
   /**
    * Retorna o extrato da conta.
+   *
+   * @return the string
    */
   public String retornarExtrato() {
     String extract = "\nExtrato da conta " + this.idConta + "\n";
@@ -82,10 +95,20 @@ public class Conta {
     return extract;
   }
 
+  /**
+   * Gets id conta.
+   *
+   * @return the id conta
+   */
   public String getIdConta() {
     return this.idConta;
   }
 
+  /**
+   * Gets pessoa cliente.
+   *
+   * @return the pessoa cliente
+   */
   public PessoaCliente getPessoaCliente() {
     return this.pessoaCliente;
   }
