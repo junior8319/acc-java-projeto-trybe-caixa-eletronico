@@ -107,7 +107,7 @@ class BancoTest {
         + mockAccount1.getIdConta()
         + "\n\n"
         + instantTransaction1 + " -------- "
-        + "Depósito recebido" + ": " + "R$ 50,00" + " +\n\n";
+        + "Depósito recebido" + ": " + "R$ 50.00" + " +\n\n";
 
     assertEquals(mockExtract1, depositarOutput);
 
