@@ -2,6 +2,7 @@ package com.trybe.acc.java.caixaeletronico;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertNotNull;
+import static org.junit.jupiter.api.Assertions.assertTrue;
 import static org.junit.jupiter.api.Assertions.fail;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
@@ -29,8 +30,15 @@ class BancoTest {
   @Test
   @DisplayName("21 - Testa o método adicionar pessoa cliente retorna o objeto pessoa cliente.")
   void adicionarPessoaClienteTest() {
-    fail("Não implementado");
+    String mockCpf = "012.345.678-90";
+    String mockName = "Pessoa Cliente Teste 21";
+    String mockPassword = "SenhaSuperFacil";
 
+    Banco mockBank = new Banco();
+    assertEquals(0, mockBank.getPessoasClientes().size());
+    PessoaCliente mockClient = mockBank.adicionarPessoaCliente(mockName, mockCpf, mockPassword);
+    assertTrue(mockClient instanceof PessoaCliente);
+    assertEquals(1, mockBank.getPessoasClientes().size());
   }
 
   /**
