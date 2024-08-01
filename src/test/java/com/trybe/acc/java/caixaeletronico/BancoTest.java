@@ -47,8 +47,16 @@ class BancoTest {
   @Test
   @DisplayName("22 - Testa o método login da pessoa cliente retorna o objeto pessoa cliente corretamente.")
   void pessoaClienteLoginTest() {
-    fail("Não implementado");
+    String mockCpf = "012.345.678-90";
+    String mockName = "Pessoa Cliente Teste 21";
+    String mockPassword = "SenhaSuperFacil";
 
+    Banco mockBank = new Banco();
+    assertEquals(0, mockBank.getPessoasClientes().size());
+    PessoaCliente mockClient = mockBank.adicionarPessoaCliente(mockName, mockCpf, mockPassword);
+    assertEquals(1, mockBank.getPessoasClientes().size());
+    assertNotNull(mockBank.pessoaClienteLogin(mockCpf, mockPassword));
+    assertTrue(mockClient instanceof PessoaCliente);
   }
 
   /**
