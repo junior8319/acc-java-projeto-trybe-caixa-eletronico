@@ -20,32 +20,32 @@ import org.junit.jupiter.api.Test;
 class PessoaClienteTest {
 
   /**
-   * The Mocked client.
+   * The mock client.
    */
-  PessoaCliente mockedClient = new PessoaCliente(
+  PessoaCliente mockClient = new PessoaCliente(
       "Pessoa 1",
       "012.345.678-90",
       "senhaMuitoDificil"
   );
 
   /**
-   * The Mocked bank.
+   * The mock bank.
    */
-  Banco mockedBank = new Banco();
+  Banco mockBank = new Banco();
 
   /**
-   * The Mocked account.
+   * The mock account.
    */
-  Conta mockedAccount1 = new Conta("corrente", mockedClient, mockedBank);
+  Conta mockAccount1 = new Conta("corrente", mockClient, mockBank);
   /**
-   * The Mocked account 2.
+   * The mock account 2.
    */
-  Conta mockedAccount2 = new Conta("poupança", mockedClient, mockedBank);
+  Conta mockAccount2 = new Conta("poupança", mockClient, mockBank);
 
   /**
-   * The Mocked account 3.
+   * The mock account 3.
    */
-  Conta mockedAccount3 = new Conta("fundo investimento", mockedClient, mockedBank);
+  Conta mockAccount3 = new Conta("fundo investimento", mockClient, mockBank);
 
   /**
    * Construtor test.
@@ -73,11 +73,11 @@ class PessoaClienteTest {
   @Test
   @DisplayName("12 - Testa o método adicionar conta e o método retornar número de contas.")
   void adicionarContaTestRetornaNumeroDeContasTest() {
-    assertEquals(0, mockedClient.retornaNumeroDeContas());
-    mockedClient.adicionarConta(mockedAccount1);
-    assertEquals(1, mockedClient.retornaNumeroDeContas());
-    mockedClient.adicionarConta(mockedAccount2);
-    assertEquals(2, mockedClient.retornaNumeroDeContas());
+    assertEquals(0, mockClient.retornaNumeroDeContas());
+    mockClient.adicionarConta(mockAccount1);
+    assertEquals(1, mockClient.retornaNumeroDeContas());
+    mockClient.adicionarConta(mockAccount2);
+    assertEquals(2, mockClient.retornaNumeroDeContas());
   }
 
   /**
@@ -86,25 +86,25 @@ class PessoaClienteTest {
   @Test
   @DisplayName("13 - Testa o método retornar saldo de uma conta específica da pessoa cliente.")
   void retornarSaldoContaEspecificaTest() {
-    mockedClient.adicionarConta(mockedAccount1);
-    mockedClient.adicionarConta(mockedAccount2);
-    mockedClient.adicionarConta(mockedAccount3);
-    mockedAccount1.adicionarTransacao(
+    mockClient.adicionarConta(mockAccount1);
+    mockClient.adicionarConta(mockAccount2);
+    mockClient.adicionarConta(mockAccount3);
+    mockAccount1.adicionarTransacao(
         10.00,
         "Depósito para teste de saldo específico"
     );
-    mockedAccount2.adicionarTransacao(
+    mockAccount2.adicionarTransacao(
         12.00,
         "Depósito para teste de saldo específico"
     );
-    mockedAccount3.adicionarTransacao(
+    mockAccount3.adicionarTransacao(
         100.00,
         "Depósito para teste de saldo específico"
     );
 
-    assertEquals(100.00, mockedClient.retornarSaldoContaEspecifica(2));
-    assertEquals(10.00, mockedClient.retornarSaldoContaEspecifica(0));
-    assertEquals(12.00, mockedClient.retornarSaldoContaEspecifica(1));
+    assertEquals(100.00, mockClient.retornarSaldoContaEspecifica(2));
+    assertEquals(10.00, mockClient.retornarSaldoContaEspecifica(0));
+    assertEquals(12.00, mockClient.retornarSaldoContaEspecifica(1));
   }
 
 
@@ -114,13 +114,13 @@ class PessoaClienteTest {
   @Test
   @DisplayName("14 - Testa o método retornar id de uma conta específica da pessoa cliente.")
   void retornarIdContaEspecificaTest() {
-    mockedClient.adicionarConta(mockedAccount1);
-    mockedClient.adicionarConta(mockedAccount2);
-    mockedClient.adicionarConta(mockedAccount3);
+    mockClient.adicionarConta(mockAccount1);
+    mockClient.adicionarConta(mockAccount2);
+    mockClient.adicionarConta(mockAccount3);
 
-    assertEquals(mockedAccount1.getIdConta(), mockedClient.retornarIdContaEspecifica(0));
-    assertEquals(mockedAccount3.getIdConta(), mockedClient.retornarIdContaEspecifica(2));
-    assertEquals(mockedAccount2.getIdConta(), mockedClient.retornarIdContaEspecifica(1));
+    assertEquals(mockAccount1.getIdConta(), mockClient.retornarIdContaEspecifica(0));
+    assertEquals(mockAccount3.getIdConta(), mockClient.retornarIdContaEspecifica(2));
+    assertEquals(mockAccount2.getIdConta(), mockClient.retornarIdContaEspecifica(1));
   }
 
   /**
@@ -133,57 +133,57 @@ class PessoaClienteTest {
     DateTimeFormatter instantFormatter = DateTimeFormatter.ofPattern(instantFormat);
     LocalDateTime auxInstant = LocalDateTime.now();
 
-    mockedClient.adicionarConta(mockedAccount1);
-    mockedClient.adicionarConta(mockedAccount2);
-    mockedClient.adicionarConta(mockedAccount3);
+    mockClient.adicionarConta(mockAccount1);
+    mockClient.adicionarConta(mockAccount2);
+    mockClient.adicionarConta(mockAccount3);
 
     String instantTransaction1 = instantFormatter.format(auxInstant);
-    mockedAccount1.adicionarTransacao(
+    mockAccount1.adicionarTransacao(
         10.00,
         "Depósito para teste de extrato específico"
     );
 
     String instantTransaction2 = instantFormatter.format(auxInstant);
-    mockedAccount2.adicionarTransacao(
+    mockAccount2.adicionarTransacao(
         12.00,
         "Depósito para teste de extrato específico"
     );
 
     String instantTransaction3 = instantFormatter.format(auxInstant);
-    mockedAccount3.adicionarTransacao(
+    mockAccount3.adicionarTransacao(
         100.00,
         "Depósito para teste de extrato específico"
     );
 
     String instantTransaction4 = instantFormatter.format(auxInstant);
-    mockedAccount3.adicionarTransacao(
+    mockAccount3.adicionarTransacao(
         50.00,
         "Depósito para teste de extrato específico"
     );
 
-    String mockedExtract1 = "\nExtrato da conta "
-        + mockedAccount1.getIdConta()
+    String mockExtract1 = "\nExtrato da conta "
+        + mockAccount1.getIdConta()
         + "\n"
         + instantTransaction1 + " -------- "
-        + "Depósito para teste de extrato específico" + ": " + "R$ 10,00" + " +\n";
+        + "Depósito para teste de extrato específico" + ": " + "R$ 10.00" + " +\n";
 
-    String mockedExtract2 = "\nExtrato da conta "
-        + mockedAccount2.getIdConta()
+    String mockExtract2 = "\nExtrato da conta "
+        + mockAccount2.getIdConta()
         + "\n"
         + instantTransaction2 + " -------- "
-        + "Depósito para teste de extrato específico" + ": " + "R$ 12,00" + " +\n";
+        + "Depósito para teste de extrato específico" + ": " + "R$ 12.00" + " +\n";
 
-    String mockedExtract3 = "\nExtrato da conta "
-        + mockedAccount3.getIdConta()
+    String mockExtract3 = "\nExtrato da conta "
+        + mockAccount3.getIdConta()
         + "\n"
         + instantTransaction4 + " -------- "
-        + "Depósito para teste de extrato específico" + ": " + "R$ 50,00" + " +\n"
+        + "Depósito para teste de extrato específico" + ": " + "R$ 50.00" + " +\n"
         + instantTransaction3 + " -------- "
-        + "Depósito para teste de extrato específico" + ": " + "R$ 100,00" + " +\n";
+        + "Depósito para teste de extrato específico" + ": " + "R$ 100.00" + " +\n";
 
-    assertEquals(mockedExtract1, mockedClient.retornarExtratoContaEspecifica(0));
-    assertEquals(mockedExtract2, mockedClient.retornarExtratoContaEspecifica(1));
-    assertEquals(mockedExtract3, mockedClient.retornarExtratoContaEspecifica(2));
+    assertEquals(mockExtract1, mockClient.retornarExtratoContaEspecifica(0));
+    assertEquals(mockExtract2, mockClient.retornarExtratoContaEspecifica(1));
+    assertEquals(mockExtract3, mockClient.retornarExtratoContaEspecifica(2));
   }
 
   /**
@@ -192,17 +192,17 @@ class PessoaClienteTest {
   @Test
   @DisplayName("16 - Testa o método adiciona transação de uma conta específica da pessoa cliente.")
   void adicionarTransacaoContaEspecificaTest() {
-    mockedClient.adicionarConta(mockedAccount1);
-    mockedClient.adicionarConta(mockedAccount2);
-    mockedClient.adicionarConta(mockedAccount3);
+    mockClient.adicionarConta(mockAccount1);
+    mockClient.adicionarConta(mockAccount2);
+    mockClient.adicionarConta(mockAccount3);
 
-    mockedClient.adicionarTransacaoContaEspecifica(
+    mockClient.adicionarTransacaoContaEspecifica(
         0,
         10.00,
         "Depósito para teste de extrato específico"
     );
 
-    assertEquals(10.00, mockedAccount1.retornarSaldo());
+    assertEquals(10.00, mockAccount1.retornarSaldo());
   }
 
   /**
@@ -214,8 +214,8 @@ class PessoaClienteTest {
     String truePassword = "senhaMuitoDificil";
     String falsePassword = "senhaFácil";
 
-    assertFalse(mockedClient.validarSenha(falsePassword));
-    assertTrue(mockedClient.validarSenha(truePassword));
+    assertFalse(mockClient.validarSenha(falsePassword));
+    assertTrue(mockClient.validarSenha(truePassword));
   }
 
   /**
@@ -224,9 +224,27 @@ class PessoaClienteTest {
   @Test
   @DisplayName("18 - Testa o método retornar resumo contas.")
   void retornarResumoContasTest() {
-    fail("Não implementado");
+    Banco mockBank2 = new Banco();
+    PessoaCliente mockClient2 = new PessoaCliente(
+        "Pessoa Cliente Dois",
+        "987.654.321-09",
+        "SenhaMegaForte"
+    );
+    Conta mockAccount4 = new Conta("corrente", mockClient2, mockBank2);
+    mockAccount4.adicionarTransacao(15.00, "Depósito para teste 18.");
+    mockClient2.adicionarConta(mockAccount4);
 
+    ByteArrayOutputStream outputStream = new ByteArrayOutputStream();
+    PrintStream printStream = new PrintStream(outputStream);
+    System.setOut(printStream);
 
+    mockClient2.retornarResumoContas();
+    String output = outputStream.toString();
+
+    String mockOutput = "\n\nResumo das Contas da pessoa Pessoa Cliente Dois:\n\n"
+        + "1) " + mockAccount4.getIdConta() + " : R$15.00 : corrente" + "\n\n\n";
+
+    assertEquals(output, mockOutput);
   }
 
   /**
