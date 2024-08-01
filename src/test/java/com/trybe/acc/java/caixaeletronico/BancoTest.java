@@ -103,24 +103,24 @@ class BancoTest {
     mockAccount1.retornarExtrato();
     String depositarOutput = outputStream.toString();
 
-    String mockedExtract1 = "\nExtrato da conta "
+    String mockExtract1 = "\nExtrato da conta "
         + mockAccount1.getIdConta()
         + "\n\n"
         + instantTransaction1 + " -------- "
         + "Depósito recebido" + ": " + "R$ 50,00" + " +\n\n";
 
-    assertEquals(mockedExtract1, depositarOutput);
+    assertEquals(mockExtract1, depositarOutput);
 
     mockBank.transferirFundos(mockClient1, 0, 1, 25.00);
 
     String instantTransaction2 = instantFormatter.format(auxInstant);
-    String mockedExtract2 = "\nExtrato da conta "
+    String mockExtract2 = "\nExtrato da conta "
         + mockAccount2.getIdConta()
         + "\n"
         + instantTransaction2 + " -------- "
         + "Transferência recebida" + ": " + "R$ 25,00" + " +\n";
 
-    String mockedExtract3 = "\nExtrato da conta "
+    String mockExtract3 = "\nExtrato da conta "
         + mockAccount1.getIdConta()
         + "\n"
         + instantTransaction2 + " -------- "
@@ -129,10 +129,10 @@ class BancoTest {
         + "Depósito recebido" + ": " + "R$ 50,00" + " +\n";
 
     String extract2 = mockAccount1.retornarExtrato();
-    assertEquals(mockedExtract3, extract2);
+    assertEquals(mockExtract3, extract2);
 
     String extract3 = mockAccount2.retornarExtrato();
-    assertEquals(mockedExtract2, extract3);
+    assertEquals(mockExtract2, extract3);
 
   }
 
@@ -150,11 +150,34 @@ class BancoTest {
         "SenhaFácil"
     );
 
+    ByteArrayOutputStream outputStream = new ByteArrayOutputStream();
+    PrintStream printStream = new PrintStream(outputStream);
+    System.setOut(printStream);
+
+    String instantFormat = "dd/MM/yyyy HH:mm:ss";
+    DateTimeFormatter instantFormatter = DateTimeFormatter.ofPattern(instantFormat);
+    LocalDateTime auxInstant = LocalDateTime.now();
+    
     Conta mockAccount1 = new Conta("corrente", mockClient1, mockBank);
     mockClient1.adicionarConta(mockAccount1);
 
+    String instantTransaction1 = instantFormatter.format(auxInstant);
     mockBank.depositar(mockClient1, 0, 100.00);
+    String instantTransaction2 = instantFormatter.format(auxInstant);
+    mockBank.sacar(mockClient1, 0, 25.00);
 
+    String mockExtract1 = "\nExtrato da conta "
+        + mockAccount1.getIdConta()
+        + "\n\n"
+        + instantTransaction2 + " -------- "
+        + "Saque efetuado" + ": " + "R$ 25,00" + " -\n"
+        + instantTransaction1 + " -------- "
+        + "Depósito recebido" + ": " + "R$ 100,00" + " +\n\n";
+
+    mockBank.mostrarExtrato(mockClient1, 0);
+    String extractOutput = outputStream.toString();
+
+    assertEquals(mockExtract1, extractOutput);
   }
 
 }
