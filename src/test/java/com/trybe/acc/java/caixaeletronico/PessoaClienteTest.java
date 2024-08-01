@@ -253,8 +253,10 @@ class PessoaClienteTest {
   @Test
   @DisplayName("19 - Testa o método Getter do atributo cpf está retornando.")
   void getCpfTest() {
-    fail("Não implementado");
+    String mockClientCpf = "012.345.678-90";
+    String clientCpfReturn = mockClient.getCpf();
 
+    assertEquals(mockClientCpf, clientCpfReturn);
   }
 
 }
