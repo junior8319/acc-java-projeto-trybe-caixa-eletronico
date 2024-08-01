@@ -118,15 +118,15 @@ class BancoTest {
         + mockAccount2.getIdConta()
         + "\n"
         + instantTransaction2 + " -------- "
-        + "Transferência recebida" + ": " + "R$ 25,00" + " +\n";
+        + "Transferência recebida" + ": " + "R$ 25.00" + " +\n";
 
     String mockExtract3 = "\nExtrato da conta "
         + mockAccount1.getIdConta()
         + "\n"
         + instantTransaction2 + " -------- "
-        + "Transferência enviada" + ": " + "R$ 25,00" + " -\n"
+        + "Transferência enviada" + ": " + "R$ 25.00" + " -\n"
         + instantTransaction1 + " -------- "
-        + "Depósito recebido" + ": " + "R$ 50,00" + " +\n";
+        + "Depósito recebido" + ": " + "R$ 50.00" + " +\n";
 
     String extract2 = mockAccount1.retornarExtrato();
     assertEquals(mockExtract3, extract2);
@@ -170,9 +170,9 @@ class BancoTest {
         + mockAccount1.getIdConta()
         + "\n\n"
         + instantTransaction2 + " -------- "
-        + "Saque efetuado" + ": " + "R$ 25,00" + " -\n"
+        + "Saque efetuado" + ": " + "R$ 25.00" + " -\n"
         + instantTransaction1 + " -------- "
-        + "Depósito recebido" + ": " + "R$ 100,00" + " +\n\n";
+        + "Depósito recebido" + ": " + "R$ 100.00" + " +\n\n";
 
     mockBank.mostrarExtrato(mockClient1, 0);
     String extractOutput = outputStream.toString();
